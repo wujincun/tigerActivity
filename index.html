@@ -383,7 +383,7 @@
 <script>
     var elevenGame = {
         API:{
-           getResultAjax:''
+            getResultAjax:''
         },
         _initVar:{
             flag:true,
@@ -414,23 +414,33 @@
                 $('.pop .rules').css('display', '-webkit-box');
             })
         },
-        moveToDestination:function (couponRandomNum) {
+        moveToDestination:function () {
             var _this = this;
-            if(_this._initVar.num == couponRandomNum){
-                clearTimeout(_this._initVar.timer)
+            //判断resultNum=6/12时
+            //区分一圈两圈
+            if(_this._initVar.num % 8 == _this._initVar.resultNum % 8){
+                clearTimeout(_this._initVar.timer);
             }else{
-               _this._initVar.timer = setTimeout(function(){_this.move(_this._initVar.num)}.bind(this),200);
+                _this._initVar.num ++;
+                $('.chunk .gameMask').css('opacity','0');
+                if(_this._initVar.num % 8 >= 0){
+                    $('.chunk' + _this._initVar.num % 8).find('.gameMask').css('opacity','0.4');
+                }else{
+                    $('.chunk' + _this._initVar.num).find('.gameMask').css('opacity','0.4');
+                }
+                _this._initVar.timer = setTimeout(_this.moveToDestination.bind(_this),200);
             }
         },
-        move:function (couponRandomNum) {
-            if(_this._initVar.num % 8 == 0){
-                _this._initVar.num = 0
-            }
-            _this._initVar.num ++;
-            $('.chunk .gameMask').css('opacity','0');
-            $('.chunk' + _this._initVar.num).find('.gameMask').css('opacity','0.4');
-            _this._initVar.timer = setTimeout(function(){_this.moveToDestination(_this._initVar.num)}.bind(this),200);
-        },
+        /* move:function () {
+         var _this = this;
+         if(_this._initVar.num % 8 == 0){
+         _this._initVar.num = 0
+         }
+         _this._initVar.num ++;
+         $('.chunk .gameMask').css('opacity','0');
+         $('.chunk' + _this._initVar.num).find('.gameMask').css('opacity','0.4');
+         _this._initVar.timer = setTimeout(function(){_this.moveToDestination()}.bind(_this),200);
+         },*/
 
         getCouponNum: function () {
             var _this = this;
@@ -453,14 +463,14 @@
                     $('.pop,.onlyOnce').css('display', '-webkit-box');
                 } else {
                     if (code == 200) {
-                        var couponRandomNum = _this.getCouponNum();
-                        _this.moveToDestination(couponRandomNum);
+                        _this._initVar.resultNum = _this.getCouponNum();
+                        _this.moveToDestination();
 
-                        $('.pop,.coupons').css('display', '-webkit-box');
-                        $('.coupons .txt span').text(result.price);
+                        /*$('.pop,.coupons').css('display', '-webkit-box');
+                         $('.coupons .txt span').text(result.price);*/
                     } else {
-                        var failNum = Math.random() ? 6 : 12;
-                        _this.moveToDestination(failNum);
+                        _this._initVar.resultNum = Math.random() ? 6 : 12;
+                        _this.moveToDestination();
                         $('.pop .thanks').css('display', '-webkit-box');
                     }
                 }
