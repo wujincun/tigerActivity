@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
     <title>双十一</title>
     <style>
+        html{font-size: 312.5%}
         body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fildset,table,td,img,div,dl,dt,dd,input{margin:0;padding:0;border:0;}
-        body{ font-size:12px;}
         img{border:none;}
         ul,ol{ list-style:none;}
         input,select,textarea{outline:none;}
@@ -17,9 +21,61 @@
         .clearfix{zoom:1;}
         .fl{  float: left;  }
         .fr{float: right}
+        /*animate*/
+        @keyframes  bannerAnimation{
+            0% {transform: scale(0)}
+            80% {transform: scale(1.1)}
+            100% {transform: scale(1)}
+        }
+        @keyframes dateAnimation {
+            0% {
+                transform: translateX(-4.172rem);
+                -webkit-transform: translateX(-4.172rem);
+                -moz-transform: translateX(-4.172rem);
+                -o-transform: translateX(-4.172rem);
+                -ms-transform: translateX(-4.172rem);
+            }
+
+            100% {
+                -webkit-transform: translateX(2.05rem);
+                -moz-transform: translateX(2.05rem);
+                -ms-transform: translateX(2.05rem);
+                -o-transform: translateX(2.05rem);
+                transform: translateX(2.05rem);
+            }
+        }
+        @keyframes saleAnimation {
+            0% {
+                transform: translateX(15.05rem);
+                -webkit-transform: translateX(15.05rem);
+                -moz-transform: translateX(15.05rem);
+                -o-transform: translateX(15.05rem);
+                -ms-transform: translateX(15.05rem);
+            }
+
+            100% {
+                -webkit-transform: translateX(2.86rem);
+                -moz-transform: translateX(2.86rem);
+                -ms-transform: translateX(2.86rem);
+                -o-transform: translateX(2.86rem);
+                transform: translateX(2.86rem);
+            }
+        }
+
         img{
             vertical-align: bottom;
             width: 100%;
+        }
+        .bannerAnimateArea{
+            background: url("images/background_01.jpg") left center no-repeat;
+            height: 8.44rem;
+            background-size: cover;
+        }
+        .bannerAnimateArea .bannerAnimate{
+            background: url("images/banner_01.png") left center no-repeat;
+            background-size: cover;
+            height: 8.44rem;
+            animation: bannerAnimation 1.2s;
         }
         .gameArea{
             background: url("images/background_02.jpg") left center no-repeat;
@@ -68,7 +124,7 @@
         .linkAnimateArea{
             background: url("images/background_03.jpg") left center no-repeat;
             background-size: cover;
-            height: 8.3rem;
+            height: 8.4rem;
         }
         .linkAnimateArea .rule{
             height: 1.45rem;
@@ -101,40 +157,7 @@
             -o-transform: translateX(2.86rem);
             transform: translateX(2.86rem);
         }
-        @keyframes dateAnimation {
-            0% {
-                transform: translateX(-4.172rem);
-                -webkit-transform: translateX(-4.172rem);
-                -moz-transform: translateX(-4.172rem);
-                -o-transform: translateX(-4.172rem);
-                -ms-transform: translateX(-4.172rem);
-            }
 
-            100% {
-                -webkit-transform: translateX(2.05rem);
-                -moz-transform: translateX(2.05rem);
-                -ms-transform: translateX(2.05rem);
-                -o-transform: translateX(2.05rem);
-                transform: translateX(2.05rem);
-            }
-        }
-        @keyframes saleAnimation {
-            0% {
-                transform: translateX(15.05rem);
-                -webkit-transform: translateX(15.05rem);
-                -moz-transform: translateX(15.05rem);
-                -o-transform: translateX(15.05rem);
-                -ms-transform: translateX(15.05rem);
-            }
-
-            100% {
-                -webkit-transform: translateX(2.86rem);
-                -moz-transform: translateX(2.86rem);
-                -ms-transform: translateX(2.86rem);
-                -o-transform: translateX(2.86rem);
-                transform: translateX(2.86rem);
-            }
-        }
 
         .linkAnimateArea .linkPartArea{
             font-size: 0;
@@ -215,27 +238,68 @@
             display: none;
             -webkit-box-align: center;
             -webkit-box-pack: center;
+            color: #fff;
         }
-        .pop .content{
+        .pop>div{
             display: none;
+            position: relative;
+            font-weight: bold;
+        }
+        .pop>div .close{
+            position: absolute;
+            height: 2rem;
+            width: 2rem;
+            right: -0.7rem;
+            top: -0.8rem;
         }
         .pop .coupons{
             background: url("images/coupon.png") left center no-repeat;
             background-size: contain;
-            height: 3.66rem;
-            width: 6.8rem;
+            height: 4.0625rem;
+            width: 7.33rem;
+        }
+        .pop .coupons .couponNumArea{
+            margin-top: .55rem;
+            width: 5.28rem;
+            margin-left: 0.86rem;
+            border-bottom: .047rem dashed #fff;
+        }
+        .pop .coupons .couponNumArea .moneyNum{
+            font-size: 1.92rem;
+            text-align: right;
+            width: 35%;
+        }
+        .pop .fullCutCoupon .couponNumArea .moneyNum{
+            margin-left: -.5rem;
+        }
+        .pop .coupons .couponNumArea .des{
+            font-size: 0.586rem;
+            line-height: 1.4;
+            margin-top: .5rem;
+        }
+        .pop .coupons .couponLink{
+            line-height: 0.9rem;
+            font-size: 0.496rem;
+            margin-left: .86rem;
+            width: 5.7rem;
+        }
+        .pop .coupons .couponLink a{
+            color: #fff;
         }
         .pop .thanks{
-            background: url("images/thank.png") left center no-repeat;
+            background: url("images/thanks.png") left center no-repeat;
             background-size: contain;
-            height: 3.66rem;
-            width: 7.08rem;
+            height: 4.0625rem;
+            width: 7.3125rem;
+        }
+        .pop .thanks .close{
+            right: -0.3rem;
         }
         .pop .onlyOnce{
             background: url("images/onlyOnce.png") left center no-repeat;
             background-size: contain;
-            height: 2.56rem;
-            width: 7.08rem;
+            height: 2.71875rem;
+            width: 7.3125rem;
         }
         .pop .rules{
             background: url("images/rule.jpg") left center no-repeat;
@@ -243,11 +307,19 @@
             width: 8.5rem;
             height: 9.04rem;
         }
+        .pop .rules .close{
+            right: -0.8rem;
+        }
+        .smallFont{
+            font-size: 0.425rem;
+        }
 
     </style>
 </head>
 <body>
-<img src="images/background_01.jpg" alt="">
+<div class="bannerAnimateArea">
+    <div class="bannerAnimate"></div>
+</div>
 <div class="gameArea">
     <ul class="playArea playAreaTop clearfix">
         <li class="chunk1 chunk">
@@ -317,13 +389,37 @@
     <div class="linkBtn mateBtn"><a href=""></a></div>
 </div>
 <div class="pop">
-    <div class="coupons content">
-        <span class="moneyNum"></span>
-        <a href="">"我的优惠券"</a>
+    <div class="coupons offsetCoupon">
+        <div class="couponNumArea clearfix">
+            <i class="moneyNum fl">3</i>
+            <div class="des fr">
+                <div>您已获得</div>
+                <div  class="smallFont">元抵用券1张</div>
+            </div>
+        </div>
+        <div class="couponLink"><span>详情查询</span><a href="">“我的优惠券”</a></div>
+        <div class="close"></div>
     </div>
-    <div class="thanks content"></div>
-    <div class="onlyOnce content"></div>
-    <div class="rules content"></div>
+    <div class="coupons fullCutCoupon">
+        <div class="couponNumArea clearfix">
+            <i class="moneyNum fl">3</i>
+            <div class="des fr">
+                <div class="smallFont">您已获得新用户</div>
+                <div>元满减券1张</div>
+            </div>
+        </div>
+        <div class="couponLink"><span>详情查询</span><a href="">“我的优惠券”</a></div>
+        <div class="close"></div>
+    </div>
+    <div class="thanks">
+        <div class="close"></div>
+    </div>
+    <div class="onlyOnce">
+        <div class="close"></div>
+    </div>
+    <div class="rules">
+        <div class="close"></div>
+    </div>
 </div>
 
 </body>
@@ -388,13 +484,20 @@
         _initVar:{
             flag:true,
             timer:null,
-            num:1
+            num: 5,
+            cryNum: 6,
+            totalNum: 8
+        },
+        _init:function () {
+            $('.chunk' + this._initVar.num).find('.gameMask').css('opacity','0.4');
+            this._bind()
         },
         _bind:function () {
             var _this = this;
             var $gameArea = $('.gameArea');
             var $startGame = $gameArea.find('.startGame');
-            var ruleBtn = $('.rule').find('a');
+            var $ruleBtn = $('.rule').find('a');
+            var $popClose = $('.pop').find('.close');
 
             $startGame.on('click',function () {
                 if(_this._initVar.flag){
@@ -410,39 +513,54 @@
                     });
                 }
             });
-            ruleBtn.on('click',function () {
-                $('.pop .rules').css('display', '-webkit-box');
+            $ruleBtn.on('click',function () {
+                $('.pop,.rules').css('display', '-webkit-box');
+            });
+            $popClose.on('click',function () {
+                $('.pop,.pop>div').css('display','none');
             })
         },
         moveToDestination:function () {
             var _this = this;
-            //判断resultNum=6/12时
-            //区分一圈两圈
+            var result = _this._initVar.result;
             if(_this._initVar.num  == _this._initVar.resultNum ){
                 clearTimeout(_this._initVar.timer);
+                if(_this._initVar.resultNum == _this._initVar.cryNum + _this._initVar.totalNum){
+                    setTimeout(function () {
+                        $('.pop,.thanks').css('display', '-webkit-box');
+                    },300)
+                }else{
+                    if(result.price == '6'){
+                        //满减
+                        setTimeout(function(){
+                            $('.pop').css('display', '-webkit-box');
+                            $('.fullCutCoupon').show();
+                            $('.coupons .couponNumArea .moneyNum').text(result.price);
+                        },300)
+                    }else{
+                        setTimeout(function(){
+                            $('.pop').css('display', '-webkit-box');
+                            $('.offsetCoupon').show();
+                            $('.coupons .couponNumArea .moneyNum').text(result.price);
+                        },300)
+                    }
+                }
             }else{
                 _this._initVar.num ++;
                 $('.chunk .gameMask').css('opacity','0');
                 var num = _this._initVar.num % 8 ? _this._initVar.num % 8 : 8;
                 $('.chunk' + num).find('.gameMask').css('opacity','0.4');
-                _this._initVar.timer = setTimeout(_this.moveToDestination.bind(_this),200);
+                _this._initVar.timer = setTimeout(_this.moveToDestination.bind(_this),100);
             }
         },
-        /* move:function () {
-         var _this = this;
-         if(_this._initVar.num % 8 == 0){
-         _this._initVar.num = 0
-         }
-         _this._initVar.num ++;
-         $('.chunk .gameMask').css('opacity','0');
-         $('.chunk' + _this._initVar.num).find('.gameMask').css('opacity','0.4');
-         _this._initVar.timer = setTimeout(function(){_this.moveToDestination()}.bind(_this),200);
-         },*/
 
         getCouponNum: function () {
             var _this = this;
-            _this._initVar.couponRandomNum = parseInt(Math.random()* 8 + 8);
-            if(_this._initVar.couponRandomNum % 8 == 6){
+            var num = _this._initVar.num;
+            var cryNum = _this._initVar.cryNum;
+            var totalNum = _this._initVar.totalNum;
+            _this._initVar.couponRandomNum = parseInt(Math.random()* totalNum + totalNum + num);//可通过totalNum*2来控制圈数
+            if(_this._initVar.couponRandomNum % totalNum == cryNum){
                 _this.getCouponNum()
             }
             return _this._initVar.couponRandomNum
@@ -451,7 +569,7 @@
         dataProcess:function (data) {
             var _this = this;
             var code = data.code;
-            var result = data.result;
+            _this._initVar.result = data.result;
             if (code == -401) {
                 window.location.href = result.url;
             } else {
@@ -461,22 +579,609 @@
                 } else {
                     if (code == 200) {
                         _this._initVar.resultNum = _this.getCouponNum();
-                        _this.moveToDestination();
-
-                        /*$('.pop,.coupons').css('display', '-webkit-box');
-                         $('.coupons .txt span').text(result.price);*/
                     } else {
-                        //_this._initVar.resultNum = Math.random() ? 6 : 14;
-                        _this._initVar.resultNum = 14;
-                        _this.moveToDestination();
-                        $('.pop .thanks').css('display', '-webkit-box');
+                        _this._initVar.resultNum = _this._initVar.cryNum + _this._initVar.totalNum;//可以在_this._initVar.totalNum*2来控制圈数
                     }
+                    _this.moveToDestination();
                 }
             }
         }
 
 
     };
-    elevenGame._bind()
+    elevenGame._init()
+</script>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>双十一</title>
+    <style>
+        html{font-size: 312.5%}
+        body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fildset,table,td,img,div,dl,dt,dd,input{margin:0;padding:0;border:0;}
+        img{border:none;}
+        ul,ol{ list-style:none;}
+        input,select,textarea{outline:none;}
+        textarea{resize:none;}
+        a{ text-decoration:none;}
+
+        /*清浮动*/
+        .clearfix:after{content:"";display:block;clear:both;}
+        .clearfix{zoom:1;}
+        .fl{  float: left;  }
+        .fr{float: right}
+        /*animate*/
+        @keyframes  bannerAnimation{
+            0% {transform: scale(0)}
+            80% {transform: scale(1.1)}
+            100% {transform: scale(1)}
+        }
+        @keyframes dateAnimation {
+            0% {
+                transform: translateX(-4.172rem);
+                -webkit-transform: translateX(-4.172rem);
+                -moz-transform: translateX(-4.172rem);
+                -o-transform: translateX(-4.172rem);
+                -ms-transform: translateX(-4.172rem);
+            }
+
+            100% {
+                -webkit-transform: translateX(2.05rem);
+                -moz-transform: translateX(2.05rem);
+                -ms-transform: translateX(2.05rem);
+                -o-transform: translateX(2.05rem);
+                transform: translateX(2.05rem);
+            }
+        }
+        @keyframes saleAnimation {
+            0% {
+                transform: translateX(15.05rem);
+                -webkit-transform: translateX(15.05rem);
+                -moz-transform: translateX(15.05rem);
+                -o-transform: translateX(15.05rem);
+                -ms-transform: translateX(15.05rem);
+            }
+
+            100% {
+                -webkit-transform: translateX(2.86rem);
+                -moz-transform: translateX(2.86rem);
+                -ms-transform: translateX(2.86rem);
+                -o-transform: translateX(2.86rem);
+                transform: translateX(2.86rem);
+            }
+        }
+
+        img{
+            vertical-align: bottom;
+            width: 100%;
+        }
+        .bannerAnimateArea{
+            background: url("images/background_01.jpg") left center no-repeat;
+            height: 8.44rem;
+            background-size: cover;
+        }
+        .bannerAnimateArea .bannerAnimate{
+            background: url("images/banner_01.png") left center no-repeat;
+            background-size: cover;
+            height: 8.44rem;
+            animation: bannerAnimation 1.2s;
+        }
+        .gameArea{
+            background: url("images/background_02.jpg") left center no-repeat;
+            background-size: cover;
+            height: 9.5rem;
+            position: relative;
+        }
+        .gameArea .playArea{
+            margin: 0 .5rem 0 .4375rem;
+        }
+        .gameArea .playArea .chunk{
+            margin-right: .05rem;
+            height: 3.15625rem;
+            width: 2.984rem;
+            position: relative;
+        }
+        .gameArea .playAreaTop .chunk{
+            float: left;
+        }
+        .gameArea .playAreaTop .chunk:last-child{
+            margin-right: 0;
+        }
+        .gameArea .playAreaMiddle{
+            height: 3.16rem;
+        }
+        .gameArea .playAreaMiddle .startGame{
+            display: block;
+            width: 2.984rem;
+            height: 3.16rem;
+            margin-left: 3.53rem;
+        }
+        .gameArea .playAreaMid .chunk{
+            position: absolute;
+            top: 3.16rem;
+        }
+        .gameArea .playAreaMid .chunk4{
+            position: absolute;
+            right: 0.46rem;
+        }
+        .gameArea .playAreaBottom .chunk{
+            float: right;
+        }
+        .gameArea .playAreaBottom .chunk:first-child{
+            margin-right: 0;
+        }
+        .linkAnimateArea{
+            background: url("images/background_03.jpg") left center no-repeat;
+            background-size: cover;
+            height: 8.4rem;
+        }
+        .linkAnimateArea .rule{
+            height: 1.45rem;
+        }
+        .linkAnimateArea .rule a{
+            display: block;
+            float: right;
+            width: 2.3125rem;
+            height: .6875rem;
+            margin: .25rem .4375rem 0 0;
+        }
+        .linkAnimateArea .animateArea .date{
+            height: 1.1875rem;
+        }
+        .linkAnimateArea .animateArea .date img{
+            width: 4.172rem;
+            animation: dateAnimation 1s;
+            -webkit-transform: translateX(2.05rem);
+            -moz-transform: translateX(2.05rem);
+            -ms-transform: translateX(2.05rem);
+            -o-transform: translateX(2.05rem);
+            transform: translateX(2.05rem);
+        }
+        .linkAnimateArea .animateArea .sale img{
+            width: 5.05rem;
+            animation: saleAnimation 1s ;
+            -webkit-transform: translateX(2.86rem);
+            -moz-transform: translateX(2.86rem);
+            -ms-transform: translateX(2.86rem);
+            -o-transform: translateX(2.86rem);
+            transform: translateX(2.86rem);
+        }
+
+
+        .linkAnimateArea .linkPartArea{
+            font-size: 0;
+        }
+        .linkAnimateArea .linkPartArea ul li{
+            width: 50%;
+            text-align: center;
+            float: left;
+        }
+        .linkAnimateArea .linkPartArea ul li a{
+            display: inline-block;
+            height: 1.078rem;
+            width: 3.39rem;
+        }
+        .linkAnimateArea .linkPartArea .line1{
+            margin-top: 1.05rem;
+        }
+        .linkAnimateArea .linkPartArea .line2{
+            margin-top: 1.14rem;
+        }
+        .movieArea{
+            background: url("images/background_04.jpg") left center no-repeat;
+            background-size: cover;
+            height: 6.85rem;
+            position: relative;
+        }
+        .movieArea .movieBtn{
+            bottom: 0;
+        }
+        .mateArea{
+            background: url("images/background_05.jpg") left center no-repeat;
+            background-size: cover;
+            height: 7.515625rem;
+            position: relative;
+        }
+        .mateArea .mateBtn{
+            bottom: 1.328125rem;
+        }
+        .linkBtn{
+            position: absolute;
+            left: 1.84375rem;
+        }
+        .linkBtn a{
+            display: block;
+            height: 1.15625rem;
+            width: 6.375rem;
+        }
+
+        .gameMask{
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+            background-color: #000;
+            opacity: 0;
+            position: absolute;
+            z-index: 10;
+        }
+        .chunk1,.chunk6{
+            background-color: rgba(218,248,152,.8);
+        }
+        .chunk2,.chunk5{
+            background-color: rgba(254,248,174,.8);
+        }
+        .chunk3,.chunk8{
+            background-color: rgba(245,221,219,.8);
+        }
+        .chunk4,.chunk7{
+            background-color: rgba(201,233,230,.8);
+        }
+        .pop {
+            position: fixed;
+            background-color: rgba(0,0,0,.5);
+            left:0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 80;
+            display: none;
+            -webkit-box-align: center;
+            -webkit-box-pack: center;
+            color: #fff;
+        }
+        .pop>div{
+            display: none;
+            position: relative;
+            font-weight: bold;
+        }
+        .pop>div .close{
+            position: absolute;
+            height: 2rem;
+            width: 2rem;
+            right: -0.7rem;
+            top: -0.8rem;
+        }
+        .pop .coupons{
+            background: url("images/coupon.png") left center no-repeat;
+            background-size: contain;
+            height: 4.0625rem;
+            width: 7.33rem;
+        }
+        .pop .coupons .couponNumArea{
+            margin-top: .55rem;
+            width: 5.28rem;
+            margin-left: 0.86rem;
+            border-bottom: .047rem dashed #fff;
+        }
+        .pop .coupons .couponNumArea .moneyNum{
+            font-size: 1.92rem;
+            text-align: right;
+            width: 35%;
+        }
+        .pop .fullCutCoupon .couponNumArea .moneyNum{
+            margin-left: -.5rem;
+        }
+        .pop .coupons .couponNumArea .des{
+            font-size: 0.586rem;
+            line-height: 1.4;
+            margin-top: .5rem;
+        }
+        .pop .coupons .couponLink{
+            line-height: 0.9rem;
+            font-size: 0.496rem;
+            margin-left: .86rem;
+            width: 5.7rem;
+        }
+        .pop .coupons .couponLink a{
+            color: #fff;
+        }
+        .pop .thanks{
+            background: url("images/thanks.png") left center no-repeat;
+            background-size: contain;
+            height: 4.0625rem;
+            width: 7.3125rem;
+        }
+        .pop .thanks .close{
+            right: -0.3rem;
+        }
+        .pop .onlyOnce{
+            background: url("images/onlyOnce.png") left center no-repeat;
+            background-size: contain;
+            height: 2.71875rem;
+            width: 7.3125rem;
+        }
+        .pop .rules{
+            background: url("images/rule.jpg") left center no-repeat;
+            background-size: contain;
+            width: 8.5rem;
+            height: 9.04rem;
+        }
+        .pop .rules .close{
+            right: -0.8rem;
+        }
+        .smallFont{
+            font-size: 0.425rem;
+        }
+
+    </style>
+</head>
+<body>
+<div class="bannerAnimateArea">
+    <div class="bannerAnimate"></div>
+</div>
+<div class="gameArea">
+    <ul class="playArea playAreaTop clearfix">
+        <li class="chunk1 chunk">
+            <span class="gameMask"></span>
+            <img src="images/chunk.png"/>
+        </li>
+        <li class="chunk2 chunk">
+            <span class="gameMask"></span>
+            <img src="images/chunk.png"/>
+        </li>
+        <li class="chunk3 chunk">
+            <span class="gameMask"></span>
+            <img src="images/chunk.png"/>
+        </li>
+    </ul>
+    <div class="playAreaMiddle"><a href="javascript:void (0)" class="startGame"></a></div>
+    <ul class="playArea playAreaMid">
+        <li class="chunk4 chunk">
+            <span class="gameMask"></span>
+            <img src="images/chunk.png"/>
+        </li>
+    </ul>
+    <ul class="playArea playAreaBottom clearfix">
+        <li class="chunk5 chunk">
+            <span class="gameMask"></span>
+            <img src="images/chunk.png"/>
+        </li>
+        <li class="chunk6 chunk">
+            <span class="gameMask"></span>
+            <img src="images/cry.png"/>
+        </li>
+        <li class="chunk7 chunk">
+            <span class="gameMask"></span>
+            <img src="images/chunk.png"/>
+        </li>
+    </ul>
+    <ul class="playArea playAreaMid">
+        <li class="chunk8 chunk">
+            <span class="gameMask"></span>
+            <img src="images/chunk.png"/>
+        </li>
+    </ul>
+</div>
+<div class="linkAnimateArea">
+    <div class="rule">
+        <a href="javascript:void (0)"></a>
+    </div>
+    <div class="animateArea">
+        <div class="date"><img src="images/date.png" alt="双十一"></div>
+        <div class="sale"><img src="images/sale.png" alt="大卖会"></div>
+    </div>
+    <div class="linkPartArea">
+        <ul class="line1 clearfix">
+            <li><a href="" class="part1"></a></li>
+            <li><a href="" class="part2"></a></li>
+        </ul>
+        <ul class="line2 clearfix">
+            <li><a href="" class="part3"></a></li>
+            <li><a href="" class="part4"></a></li>
+        </ul>
+    </div>
+</div>
+<div class="movieArea">
+    <div class="linkBtn movieBtn"><a href=""></a></div>
+</div>
+<div class="mateArea">
+    <div class="linkBtn mateBtn"><a href=""></a></div>
+</div>
+<div class="pop">
+    <div class="coupons offsetCoupon">
+        <div class="couponNumArea clearfix">
+            <i class="moneyNum fl">3</i>
+            <div class="des fr">
+                <div>您已获得</div>
+                <div  class="smallFont">元抵用券1张</div>
+            </div>
+        </div>
+        <div class="couponLink"><span>详情查询</span><a href="">“我的优惠券”</a></div>
+        <div class="close"></div>
+    </div>
+    <div class="coupons fullCutCoupon">
+        <div class="couponNumArea clearfix">
+            <i class="moneyNum fl">3</i>
+            <div class="des fr">
+                <div class="smallFont">您已获得新用户</div>
+                <div>元满减券1张</div>
+            </div>
+        </div>
+        <div class="couponLink"><span>详情查询</span><a href="">“我的优惠券”</a></div>
+        <div class="close"></div>
+    </div>
+    <div class="thanks">
+        <div class="close"></div>
+    </div>
+    <div class="onlyOnce">
+        <div class="close"></div>
+    </div>
+    <div class="rules">
+        <div class="close"></div>
+    </div>
+</div>
+
+</body>
+<script>
+    (function (doc, win) {
+        // 一物理像素在不同屏幕的显示效果不一样。要根据devicePixelRatio来修改meta标签的scale,要注释上面的meta标签
+        (function(){
+            var dpr = scale = 0;
+            var isIPhone = win.navigator.appVersion.match(/iphone/gi);
+            var devicePixelRatio = win.devicePixelRatio;
+            if (isIPhone) {
+                // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
+                if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {
+                    dpr = 3;
+                } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)){
+                    dpr = 2;
+                } else {
+                    dpr = 1;
+                }
+            } else {
+                // 其他设备下，仍旧使用1倍的方案
+                dpr = 1;
+            }
+
+            // 分辨率Resolution适配
+            var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        if(clientWidth / dpr > 540){
+                            clientWidth  = 540 * dpr;
+                        }
+                        docEl.style.fontSize = clientWidth / 10 + 'px';
+                    };
+            // Abort if browser does not support addEventListener
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+
+            scale = 1 / dpr;
+            var metaEl = "";
+            metaEl = doc.createElement('meta');
+            metaEl.setAttribute('name', 'viewport');
+            metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+            if (docEl.firstElementChild) {
+                docEl.firstElementChild.appendChild(metaEl);
+            } else {
+                var wrap = doc.createElement('div');
+                wrap.appendChild(metaEl);
+                doc.write(wrap.innerHTML);
+            }
+        })();
+    })(document, window);
+</script>
+<script src="js/jquery-1.12.1.min.js"></script>
+<script>
+    var elevenGame = {
+        API:{
+            getResultAjax:''
+        },
+        _initVar:{
+            flag:true,
+            timer:null,
+            num: 5,
+            cryNum: 6,
+            totalNum: 8
+        },
+        _init:function () {
+            $('.chunk' + this._initVar.num).find('.gameMask').css('opacity','0.4');
+            this._bind()
+        },
+        _bind:function () {
+            var _this = this;
+            var $gameArea = $('.gameArea');
+            var $startGame = $gameArea.find('.startGame');
+            var $ruleBtn = $('.rule').find('a');
+            var $popClose = $('.pop').find('.close');
+
+            $startGame.on('click',function () {
+                if(_this._initVar.flag){
+                    _this._initVar.flag = false;
+                    $.ajax({
+                        url:/*_this.API.getResultAjax*/'mock.json',
+                        type:"GET",
+                        data:{
+
+                        }
+                    }).done(function (data) {
+                        _this.dataProcess(data)
+                    });
+                }
+            });
+            $ruleBtn.on('click',function () {
+                $('.pop,.rules').css('display', '-webkit-box');
+            });
+            $popClose.on('click',function () {
+                $('.pop,.pop>div').css('display','none');
+            })
+        },
+        moveToDestination:function () {
+            var _this = this;
+            var result = _this._initVar.result;
+            if(_this._initVar.num  == _this._initVar.resultNum ){
+                clearTimeout(_this._initVar.timer);
+                if(_this._initVar.resultNum == _this._initVar.cryNum + _this._initVar.totalNum){
+                    setTimeout(function () {
+                        $('.pop,.thanks').css('display', '-webkit-box');
+                    },300)
+                }else{
+                    if(result.price == '6'){
+                        //满减
+                        setTimeout(function(){
+                            $('.pop').css('display', '-webkit-box');
+                            $('.fullCutCoupon').show();
+                            $('.coupons .couponNumArea .moneyNum').text(result.price);
+                        },300)
+                    }else{
+                        setTimeout(function(){
+                            $('.pop').css('display', '-webkit-box');
+                            $('.offsetCoupon').show();
+                            $('.coupons .couponNumArea .moneyNum').text(result.price);
+                        },300)
+                    }
+                }
+            }else{
+                _this._initVar.num ++;
+                $('.chunk .gameMask').css('opacity','0');
+                var num = _this._initVar.num % 8 ? _this._initVar.num % 8 : 8;
+                $('.chunk' + num).find('.gameMask').css('opacity','0.4');
+                _this._initVar.timer = setTimeout(_this.moveToDestination.bind(_this),100);
+            }
+        },
+
+        getCouponNum: function () {
+            var _this = this;
+            var num = _this._initVar.num;
+            var cryNum = _this._initVar.cryNum;
+            var totalNum = _this._initVar.totalNum;
+            _this._initVar.couponRandomNum = parseInt(Math.random()* totalNum + totalNum + num);//可通过totalNum*2来控制圈数
+            if(_this._initVar.couponRandomNum % totalNum == cryNum){
+                _this.getCouponNum()
+            }
+            return _this._initVar.couponRandomNum
+        },
+
+        dataProcess:function (data) {
+            var _this = this;
+            var code = data.code;
+            _this._initVar.result = data.result;
+            if (code == -401) {
+                window.location.href = result.url;
+            } else {
+                _this._initVar.flag = true;
+                if (code == -404 && data.playNum > 3) {
+                    $('.pop,.onlyOnce').css('display', '-webkit-box');
+                } else {
+                    if (code == 200) {
+                        _this._initVar.resultNum = _this.getCouponNum();
+                    } else {
+                        _this._initVar.resultNum = _this._initVar.cryNum + _this._initVar.totalNum;//可以在_this._initVar.totalNum*2来控制圈数
+                    }
+                    _this.moveToDestination();
+                }
+            }
+        }
+
+
+    };
+    elevenGame._init()
 </script>
 </html>
