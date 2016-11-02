@@ -418,16 +418,13 @@
             var _this = this;
             //判断resultNum=6/12时
             //区分一圈两圈
-            if(_this._initVar.num % 8 == _this._initVar.resultNum % 8){
+            if(_this._initVar.num  == _this._initVar.resultNum ){
                 clearTimeout(_this._initVar.timer);
             }else{
                 _this._initVar.num ++;
                 $('.chunk .gameMask').css('opacity','0');
-                if(_this._initVar.num % 8 >= 0){
-                    $('.chunk' + _this._initVar.num % 8).find('.gameMask').css('opacity','0.4');
-                }else{
-                    $('.chunk' + _this._initVar.num).find('.gameMask').css('opacity','0.4');
-                }
+                var num = _this._initVar.num % 8 ? _this._initVar.num % 8 : 8;
+                $('.chunk' + num).find('.gameMask').css('opacity','0.4');
                 _this._initVar.timer = setTimeout(_this.moveToDestination.bind(_this),200);
             }
         },
@@ -444,11 +441,11 @@
 
         getCouponNum: function () {
             var _this = this;
-            var couponRandomNum = parseInt(Math.random()*16 + 1);
-            if(couponRandomNum % 8 == 6){
+            _this._initVar.couponRandomNum = parseInt(Math.random()* 8 + 8);
+            if(_this._initVar.couponRandomNum % 8 == 6){
                 _this.getCouponNum()
             }
-            return couponRandomNum
+            return _this._initVar.couponRandomNum
         },
 
         dataProcess:function (data) {
@@ -469,7 +466,8 @@
                         /*$('.pop,.coupons').css('display', '-webkit-box');
                          $('.coupons .txt span').text(result.price);*/
                     } else {
-                        _this._initVar.resultNum = Math.random() ? 6 : 12;
+                        //_this._initVar.resultNum = Math.random() ? 6 : 14;
+                        _this._initVar.resultNum = 14;
                         _this.moveToDestination();
                         $('.pop .thanks').css('display', '-webkit-box');
                     }
